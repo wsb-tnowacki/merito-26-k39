@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +29,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'tytul' => 'required|max:200|min:3',
+            'autor' => [
+                'required', 
+                'max:100', 
+                'min:2'
+                ],
+            'email' => 'required|max:200|min:5|email:dns,rfc',
+            'tresc' => 'required|min:6'
+        ]);
+        dd(request());
     }
 
     /**
